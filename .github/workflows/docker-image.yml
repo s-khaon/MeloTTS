@@ -17,9 +17,9 @@ jobs:
       id: extract_tag
       run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
     - name: Build the Docker image
-      run: docker login --username=${{ secrets.IMAGE_REPO_USERNAME }} ccr.ccs.tencentyun.com --password=${{ secrets.IMAGE_REPO_PASSWORD }}
+      run: docker login --username=${{ secrets.IMAGE_REPO_USERNAME }} crpi-91par1sd7ay2hw2j.cn-shanghai.personal.cr.aliyuncs.com --password=${{ secrets.IMAGE_REPO_PASSWORD }}
     - name: Build the Server Docker image
       working-directory: ./
-      run: docker build -f ./Dockerfile -t ccr.ccs.tencentyun.com/skhaon/melotts:${{ steps.extract_tag.outputs.tag }} .
+      run: docker build -f ./Dockerfile -t crpi-91par1sd7ay2hw2j.cn-shanghai.personal.cr.aliyuncs.com/skhaon/melotts:${{ steps.extract_tag.outputs.tag }} .
     - name: Push the Server Docker image
-      run: docker push ccr.ccs.tencentyun.com/skhaon/melotts:${{ steps.extract_tag.outputs.tag }}
+      run: docker push crpi-91par1sd7ay2hw2j.cn-shanghai.personal.cr.aliyuncs.com/skhaon/melotts:${{ steps.extract_tag.outputs.tag }}
