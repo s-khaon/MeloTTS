@@ -19,13 +19,7 @@ jobs:
     - name: Build the Docker image
       run: docker login --username=${{ secrets.IMAGE_REPO_USERNAME }} ccr.ccs.tencentyun.com --password=${{ secrets.IMAGE_REPO_PASSWORD }}
     - name: Build the Server Docker image
-      working-directory: ./server
+      working-directory: ./
       run: docker build -f ./Dockerfile -t ccr.ccs.tencentyun.com/skhaon/melotts:${{ steps.extract_tag.outputs.tag }} .
-    - name: Build the H5 Docker image
-      working-directory: ./web
-      run: docker build -f ./Dockerfile -t ccr.ccs.tencentyun.com/skhaon/melotts-h5:${{ steps.extract_tag.outputs.tag }} .
     - name: Push the Server Docker image
       run: docker push ccr.ccs.tencentyun.com/skhaon/melotts:${{ steps.extract_tag.outputs.tag }}
-    - name: Push the H5 Docker image
-      run: docker push ccr.ccs.tencentyun.com/skhaon/melotts-h5:${{ steps.extract_tag.outputs.tag }}
-    
